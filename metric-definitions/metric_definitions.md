@@ -10,7 +10,7 @@ This page defines the standard KPI calculations used across the Task 3 dashboard
 | **Orders** | Count of distinct `order_id` for paid orders. | `ecom.orders` |
 | **AOV** | Revenue ÷ distinct paid orders. | `ecom.orders` |
 | **Conversion Rate** | Distinct sessions resulting in a paid order ÷ total distinct sessions × 100. | `ecom.sessions`, `ecom.orders` |
-| **Refund Rate** | Distinct successfully refunded orders ÷ distinct paid orders × 100. | `ecom.refunds`, `ecom.orders` |
+| **Refund Rate** | Distinct successfully refunded paid orders created during the reporting period ÷ distinct paid orders created during the reporting period × 100. | `ecom.refunds`, `ecom.orders` |
 | **WoW %** | `(Current value − Previous week value) ÷ Previous week value × 100`. | Derived |
 
 ## Ops/CX Metrics
@@ -27,42 +27,27 @@ This page defines the standard KPI calculations used across the Task 3 dashboard
 | **Stuck Orders** | Orders in a non-terminal status for more than 2 days relative to the dataset's latest order date. | `ecom.orders` |
 | **Refund Rate by Product Category** | Distinct successfully refunded orders associated with a category ÷ distinct paid orders associated with that category × 100. | `ecom.refunds`, `ecom.order_items`, `ecom.product_variants`, `ecom.products`, `ecom.categories`, `ecom.orders` |
 
-## Cross-Dashboard Consistency Check
+# Cross-Dashboard Consistency Check
 
 **Metric:** Refund Rate
 
-**Validation Period:** June 8, 2026 – June 14, 2026
+**Canonical Definition:**
 
-### Definition
-
-Distinct successfully refunded orders during the period  
+Distinct successfully refunded paid orders created during the reporting period  
 ÷  
-Distinct paid orders during the period  
-× 100
+Distinct paid orders created during the reporting period  
+× 100.
 
-### Results
+## Multi-Window Validation
 
-| Validation | Result |
-|---|---:|
-| Leadership Snapshot | **0.69%** |
-| Ops/CX Dashboard | **0.7%** |
-| Successfully Refunded Orders | **8** |
-| Paid Orders | **1,162** |
+| Validation Window | Leadership Snapshot | Ops/CX Dashboard | Result |
+|---|---:|---:|---|
+| Apr 1–30, 2026 | 0.57% | 0.6% | PASS |
+| May 16–Jun 14, 2026 | 0.52% | 0.5% | PASS |
+| Jun 1–7, 2026 | 0.61% | 0.6% | PASS |
 
-### Manual Validation
+**Result:** PASS
 
-```text
-8 refunded orders ÷ 1,162 paid orders × 100
-= 0.688468...
-≈ 0.69%
-```
+The metric was tested across multiple reporting windows to confirm that both dashboards respond dynamically to the Date Range filter and use the same canonical Refund Rate definition.
 
-**Result:** ✅ PASS
-
-### Conclusion
-
-Both dashboards use the same Refund Rate definition and the same 7-day comparison period.
-
-The underlying Refund Rate is **0.69%**. The Leadership Dashboard displays **0.69%**, while the Ops/CX Dashboard displays **0.7%** because it is rounded to one decimal place.
-
-The difference is display formatting only, not a metric-definition difference.
+The small displayed differences are due only to formatting: the Leadership Snapshot displays Refund Rate to two decimal places, while the Ops/CX Dashboard displays it to one decimal place.

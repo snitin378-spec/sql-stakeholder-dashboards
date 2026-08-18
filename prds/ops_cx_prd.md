@@ -96,6 +96,13 @@ When a courier in a particular region starts failing or a payment gateway begins
 3. **Delivery, Payment, and Refund Breakdowns** — identify the region, courier, payment method, or product category driving the issue.
 4. **Actionable Stuck Orders List** — identify the exact orders requiring operational intervention.
 
+## Known Caveats
+- Reporting window: The dashboard default reporting range is fixed to end on June 14, 2026 for consistent Task 3 evaluation. KPI Trend cards compare the latest 7-day reporting period with the preceding 7-day period.
+- Delivery SLA: On-Time Delivery uses a fixed 5-day SLA from shipped_at to delivered_at; differences in courier- or region-specific contractual SLAs are not modeled.
+- Payment failures: Payment Failure Rate is calculated from recorded payment transactions. It reflects transaction failures and does not independently identify the root cause of a gateway failure.
+- Stuck orders: Stuck-order identification is based on the defined age/status rule and should be treated as an operational investigation queue rather than proof that every listed order requires the same intervention.
+- Region/Courier comparisons: Low-volume region/courier combinations can produce volatile percentages; volume should be considered alongside On-Time Delivery % when prioritizing operational action.
+
 ## Wireframe
 
 ```text

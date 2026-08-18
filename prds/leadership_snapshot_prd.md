@@ -94,6 +94,14 @@ All dashboard filters are connected to the applicable Leadership dashboard cards
 3. **Country and Acquisition Channel Breakdowns** — identify the main drivers of business performance.
 4. **Diagnostic Table** — supports deeper investigation when a KPI changes.
 
+# Known Caveats 
+
+- Conversion Rate and Payment Method: Payment Method is only available for sessions that progress to an order/payment attempt. Applying a Payment Method filter requires careful denominator handling so that Conversion Rate is not artificially inflated by excluding non-converting sessions. This is addressed separately in the Conversion Rate metric logic.
+- WoW comparison: KPI Trend cards compare the latest reporting point with the corresponding point seven days earlier. The dashboard default reporting window is fixed to end on June 14, 2026 for consistent Task 3 evaluation.
+- Acquisition attribution: Acquisition Channel analysis depends on the channel associated with the session and should be interpreted according to the available session-level attribution data.
+- Executive scope: The dashboard intentionally excludes detailed operational diagnostics such as courier SLA issues, payment error codes, and individual stuck orders; these are handled in the Ops/CX Dashboard. 
+- Conversion Rate denominator: The session denominator is calculated independently of Payment Method. Payment Method filters only the converted-session numerator, preventing non-converting sessions from being removed from the denominator. Validation: All methods = 16.32%; UPI = 4.66%.
+
 ## Wireframe
 
 ```text
@@ -122,3 +130,4 @@ Top 5 with WoW                  | Top 5 with WoW
 Leadership — 14-Day Diagnostic Table
 
 --------------------------------------------------------------------------
+
