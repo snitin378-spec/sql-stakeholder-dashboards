@@ -27,17 +27,17 @@ When the Founder/CEO reviews the dashboard each morning, they need to quickly un
 ### Question 1
 **What decision will you make after reviewing this dashboard each morning?**
 
-I want to quickly know whether yesterday's business performance was better or worse than expected. If there is a significant decline in revenue, orders, or conversion rate, I will ask the relevant team to investigate immediately.
+First 30 seconds: Did yesterday break our revenue or CR trend compared to the same weekday last week? If revenue is down >15% WoW or refund rate spikes above 1.5%, I immediately ping Product or Ops before morning standup to find the leak. If KPIs are steady/green, I close the tab and let the teams execute without interruption.
 
 ### Question 2
 **Which metric would be the most damaging if calculated incorrectly?**
 
-Revenue is the most critical metric because it directly reflects business performance. Incorrect revenue figures could lead to poor business decisions and loss of stakeholder trust.
+Revenue and Conversion Rate. If Revenue is inflated (e.g. counting pending orders or failed retries), I make bad hiring and budget commitments. If Conversion Rate artificially reads 100% due to broken session denominators, Growth thinks campaigns are succeeding when users are actually bouncing.
 
 ### Question 3
 **Who else will use this dashboard, and what information would they require?**
 
-The leadership team, including Finance, Operations, and Product Managers, may also review this dashboard. They need a high-level summary of business performance rather than operational details.
+Board members and department heads (Growth, Ops, Finance) in our weekly sync. They need high-level weekly trends and channel/country contributions to align on company priorities, without getting bogged down in order-level operational noise.
 
 ## Metrics That Matter
 

@@ -1,48 +1,13 @@
 # Anomaly Investigation 02 — Below-Target On-Time Delivery Performance
 
-## Observation
+**Observation:** The Ops/CX dashboard shows an overall on-time delivery rate below the 90% target. To identify the source of the delivery issue, I analyzed delivery performance by region and courier.
 
-The Ops/CX dashboard shows an overall **On-Time Delivery Rate below the 90% target**.
+**Hypotheses:** The below-target delivery performance could be broadly distributed across operations, or it could be concentrated within specific region and courier combinations.
 
-To identify the source of the delivery issue, I analyzed delivery performance by region and courier.
+**Tests:** I calculated delivered shipments, on-time shipments, late shipments, on-time percentage, and average late days by region and courier. Several EcomExpress region combinations showed on-time performance below 80%. Texas recorded 76.7% on-time delivery across 73 shipments, Delhi 79.7% across 311 shipments, Gujarat 79.8% across 287 shipments, and Uttar Pradesh 79.6% across 181 shipments.
 
-## Hypotheses
+I then compared performance at the overall carrier level. EcomExpress achieved **81.8% on-time delivery across 6,694 delivered shipments**, compared with **90.8% for Blue Dart across 6,667 shipments** and **93.8% for Delhivery across 6,682 shipments**. The carriers handled comparable shipment volumes, but EcomExpress underperformed both alternatives materially.
 
-The below-target delivery performance could be:
+**Conclusion:** The delivery issue is primarily a **carrier-wide EcomExpress performance problem rather than an isolated regional issue**. The weak performance across multiple EcomExpress regions is consistent with its overall on-time delivery rate of 81.8%, which trails Blue Dart and Delhivery despite similar shipment volumes.
 
-1. Broadly distributed across operations.
-2. Concentrated within specific region and courier combinations.
-
-## Tests
-
-I calculated delivered shipments, on-time shipments, late shipments, on-time percentage, and average late days by region and courier.
-
-Several **EcomExpress** combinations showed on-time performance below 80%.
-
-| Region | On-Time Delivery % | Delivered Shipments | Late Shipments |
-|---|---:|---:|---:|
-| Texas | **76.7%** | 73 | 17 |
-| Delhi | **79.7%** | 311 | 63 |
-| Gujarat | **79.8%** | 287 | 58 |
-| Uttar Pradesh | **79.6%** | 181 | 37 |
-
-Texas recorded the lowest rate at **76.7%**, with 17 of 73 shipments late.
-
-More importantly from a volume perspective, Delhi recorded **79.7%** on-time delivery across 311 shipments, including 63 late shipments. Gujarat recorded **79.8%** across 287 shipments, with 58 late shipments, while Uttar Pradesh recorded **79.6%** across 181 shipments, with 37 late shipments.
-
-## Conclusion
-
-The delivery issue is not simply an isolated low-volume anomaly.
-
-Poor performance is visible across several **EcomExpress region combinations**, including high-volume regions such as Delhi and Gujarat.
-
-## So What
-
-Operations should prioritize EcomExpress performance in high-volume regions, especially **Delhi and Gujarat**, and investigate:
-
-- Courier capacity
-- Routing
-- Handoff delays
-- Regional fulfilment processes
-
-Improving these high-volume combinations is likely to have greater impact on the overall On-Time Delivery KPI than focusing only on the lowest-performing small-volume region.
+**So What:** Operations should prioritize a **carrier-level review with EcomExpress**, investigating capacity, routing, handoff processes, and SLA adherence across its network. The team should also evaluate whether shipment volume can be reallocated toward better-performing carriers such as Blue Dart or Delhivery while EcomExpress performance is addressed.

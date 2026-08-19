@@ -1,11 +1,13 @@
 # Anomaly Investigation 01 — Revenue Decline on June 14, 2026
 
-**Observation:** On June 14, 2026, paid revenue fell to ₹421,219 from ₹1,951,822 on June 7, representing a 78.4% week-over-week decline. This was the most significant movement visible in the Leadership Snapshot.
+**Observation:** On June 14, 2026, paid revenue fell to ₹421,219 from ₹1,951,822 on June 7, representing a 78.4% week-over-week decline.
 
-**Hypotheses:** The decline could have been caused by lower traffic/session volume, lower conversion into paid orders, lower average order value (AOV), or incomplete data for June 14.
+**Hypotheses:** The decline could have been caused by lower order volume, lower AOV, a genuine demand decline, or incomplete/under-populated data at the dataset boundary.
 
-**Tests:** I compared June 14 with the same weekday one week earlier. Session volume declined from 1,007 to 429, a 57.4% decrease. Paid orders declined from 258 to 72, a 72.1% decrease, while AOV declined from ₹7,565 to ₹5,850, a 22.7% decrease. I also reviewed the hourly order profile. June 14 contained order activity across most hours of the day, including late-evening activity, indicating that the revenue decline was not caused by a simple partial-day data cutoff.
+**Tests:** I compared June 14 with the same weekday one week earlier. Paid orders declined from 258 to 72, a 72.1% decrease, while AOV declined from ₹7,565 to ₹5,850, a 22.7% decrease.
 
-**Conclusion:** The revenue decline was primarily associated with substantially lower traffic and paid-order volume, with the decline in AOV providing an additional negative impact. Because paid orders fell more sharply than session volume, traffic reduction alone does not fully explain the anomaly; conversion performance should also be investigated. The hourly profile does not indicate a simple partial-day data issue.
+I then tested data completeness beyond simply checking the first and last order timestamps. June 14 recorded **429 sessions compared with 1,007 sessions on June 7**. Activity was lower across all 24 hours, with the median hourly session volume at approximately **40% of June 7's level** and no distinct intraday cutoff point.
 
-**So What:** Leadership should investigate why traffic fell sharply on June 14 and why paid orders declined even faster than sessions. Acquisition/channel performance and conversion should be reviewed first, followed by the decline in AOV. The evidence supports treating June 14 as a genuine business-performance anomaly rather than dismissing it as a data-refresh issue.
+**Conclusion:** Although June 14 contains activity throughout the full day, the uniformly lower hourly session volume indicates that the final dataset date is likely **under-populated**. Therefore, the apparent 78.4% revenue decline should not be treated as a confirmed business-performance deterioration.
+
+**So What:** Leadership should avoid escalating the June 14 revenue decline as a business anomaly until data completeness is confirmed. For anomaly investigations, the final date of a dataset should be treated cautiously, and hourly traffic/session-volume checks should be used alongside timestamp coverage before drawing business conclusions.

@@ -27,20 +27,17 @@ When a courier in a particular region starts failing or a payment gateway begins
 ### Question 1
 **What operational decision will you make after reviewing this dashboard?**
 
-**Answer:**  
-[Paste the stakeholder's actual response here]
+Every morning at 9 AM: Check On-Time Delivery and Payment Failure Rate. If a carrier drops below 85% on-time delivery in high-volume regions or payment failure spikes above 5%, I immediately re-allocate warehouse shipments to backup carriers (Blue Dart/Delhivery) or escalate gateway errors to engineering. Then I triage the Stuck Orders queue (>48h unfulfilled) to clear high-value blockers.
 
 ### Question 2
 **Between On-Time Delivery %, Payment Failure Rate, and Refund Rate, which metric would be the most damaging if calculated incorrectly, and why?**
 
-**Answer:**  
-[Paste the stakeholder's actual response here]
+Payment Failure Rate in real-time — if a gateway outage or 75% UPI failure goes undetected for 4 hours, customers abandon their carts permanently and that revenue is lost forever. On-Time Delivery is second because courier SLA breaches trigger CX ticket floods and chargebacks.
 
 ### Question 3
 **Who else will use this dashboard, and what information would they require?**
 
-**Answer:**  
-[Paste the stakeholder's actual response here]
+Warehouse fulfillment leads, Courier Partner Account Managers, and CX escalation leads. Warehouse leads need the Stuck Orders queue (>48h paid, unfulfilled) and zero-inventory stockouts; Courier managers need volume and SLA breach counts by courier/region to hold carriers accountable in weekly reviews.
 
 ## Metrics That Matter
 
